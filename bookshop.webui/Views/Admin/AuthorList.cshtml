@@ -1,0 +1,58 @@
+@model AuthorListViewModel
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="h3">Admin Author</h1>
+        <hr>
+        <a class="btn btn-primary btn-sm" href="/admin/authors/create">Add Author</a>
+        <table class="table table-bordered mt-3">
+            <thead>
+                <tr>
+                    <td style="width: 30px;">Id</td>
+                    <td style="width: 100px;">Image</td>
+                    <td>Name</td>
+                   
+                     <td style="width: 150px;"></td>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Authors.Count > 0)
+                {
+                    @foreach (var item in Model.Authors)
+                    {
+                        <tr>
+                            <td>@item.AuthorId</td>
+                            <td><img src="~/ImageAuthor/@item.ImageAuthor" width="100"></td>
+                            <td>@item.Name</td>
+                           
+                         
+                         
+                            <td>
+                                <a href="/admin/authors/@item.AuthorId" class="btn btn-primary btn-sm mr-2">Edit</a>
+
+                                <form action="/admin/deleteauthor" method="POST" style="display: inline;">
+                                    <input type="hidden" name="authorId" value="@item.AuthorId">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+
+
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        <h3>Not find author!!</h3>
+                    </div>
+
+                }
+
+            </tbody>
+
+        </table>
+    </div>
+
+
+</div>

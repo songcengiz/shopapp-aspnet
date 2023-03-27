@@ -1,0 +1,93 @@
+@model Product
+
+<form method="Post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <label for="Name">Name</label>
+        <input asp-for="Name" value="@Model.Name" class="form-control">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Price">Price</label>
+        <input asp-for="Price" value="@Model.Price" class="form-control">
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="Description">Description</label>
+        <textarea asp-for="Description" value="@Model.Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="ImageUrl">ImageUrl</label>
+        <input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control">
+        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+    </div>
+    @* <div class="form-group">
+        <label for="CategoryId">Category</label>
+        <select asp-for="CategoryId" asp-items="@ViewBag.Categories" class="form-control">
+            <option selected disabled>Choose</option>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </select>
+    </div> *@
+    @* <div class="form-group">
+        <label for="WriterId">WriterId</label>
+        <select asp-for="WriterId" asp-items="@ViewBag.Writers" class="form-control">
+            <option selected disabled>Choose</option> 
+        </select>
+    </div> *@
+    
+   
+    @* <div class="form-group">
+        <label for="PaperType">Kağıt Türü</label>
+        <select class="form-control" id="PaperType">
+            <option>2.Hamur</option>
+            <option>1.Hamur</option>
+            <option>3. Hamur Kağıt:</option>
+            <option>Kuşe Kağıt:</option>
+
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="print no">Baskı No</label>
+        <input type="text" name="print No" class="form-control">
+    </div>
+    <div class="form-group">
+        <label for="YearOfPublication">Basım Yılı</label>
+        <input asp-for="YearOfPublication" class="form-control">
+    </div>
+     <div class="form-group col-md-4">
+        <label for="writer">Writer</label>
+        <select id="writer" class="form-control">
+            <option selected disabled>Choose</option>
+            <option>Haluk yavuzer</option>
+            <option>İskender Pala</option>
+            <option>Aziz Nesin</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="publisher">Yayınevi</label>
+        <select id="publisher" class="form-control">
+            <option selected disable>Choose</option>
+            <option>Can Yayınları</option>
+            <option>Remzi Kitapevi</option>
+            <option>Everest Yayınları</option>
+            <option>Nesin Yayınları</option>
+            <option>Nesil Yayınları</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4">
+        <label for="Translator">Tercüman</label>
+        <select id="translator" class="form-control">
+            <option selected disable>Choose</option>
+            <option>Azra Erhat</option>
+            <option>Sevin Okyay</option>
+            <option>Fatma Aliye Topuz</option>
+
+        </select>
+    </div> *@
+   
+
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

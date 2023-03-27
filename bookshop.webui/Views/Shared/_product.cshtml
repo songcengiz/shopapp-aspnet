@@ -1,0 +1,96 @@
+@model Product
+
+
+
+  <div class="card h-100">
+    <img src="~/coverpage/@Model.ImageUrl" class="card-img-top " alt="@Model.Name" >
+      
+      <div class="card-body" >
+        <h5 class="card-title">@Model.Name</h5>
+        <small class="text-muted">
+          <i class="fa-solid fa-turkish-lira-sign"></i>@Model.Price
+        </small>
+          </div>
+        <div class="card-footer text-center">
+             <a asp-controller="shop" asp-action="Details" asp-route-url="@Model.Url" class="btn btn-primary btn-sm">Details</a>
+        
+           
+            
+         
+             @if(User.Identity.IsAuthenticated)
+             {
+                <form asp-controller="Cart" asp-action="AddToCart" method="POST" style="display: inline;">
+                <input type="hidden" name="productId" value="@Model.ProductId">
+                <input type="hidden" name="quantity" value="1">
+                <button type="submit" class="btn btn-primary btn-sm">Add to Cart</button>
+            </form>
+             }
+           
+      
+      </div>
+       </div>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+@* <div class="prd-content">
+  <div class="prd-content-wrapper">
+
+
+
+  <a class="prd-name" title="Hayatın Sesi"
+  href="/kitap/hayatin-sesi/gulseren-budayicioglu/edebiyat/deneme-yazin/urunno=0001963191001">Hayatın Sesi</a>
+
+  <div class="prd-row">
+  <div class="box-line-2 pName"><a title="G&#252;lseren Budayıcıoğlu" href="/Yazar/gulseren-budayicioglu/s=265093"
+  class="who text-overflow">G&#252;lseren Budayıcıoğlu</a></div>
+
+  </div>
+
+  <div class="prd-price-wrapper dr-flex-start flex-wrap">
+  <div class="prd-prices">
+
+  <div class="prd-price" data-price='36,4'>
+  36,40 TL
+  </div>
+  </div>
+  </div>
+
+  <div class="prd-info-wrapper">
+  <div class="prd-media-type">
+  <span title="İnce Kapak">İnce Kapak</span>
+  </div>
+
+  <a class="prd-publisher" title="Doğan Kitap" href="/yayinevi/dogan-kitap/s=2744">
+  Doğan Kitap
+  </a>
+
+
+  </div> *@
+
+@* <div class="prd-info-badge">
+  </div>
+
+  </div>
+
+  <div class="prd-buttons">
+  <div class="prd-info-badge">
+  </div>
+  <button data-code="1395382" data-quantity="1" class="btn add-cart-btn js-add-basket">
+  Sepete Ekle
+  </button>
+  </div>
+  </div>
+  </div>
+  </div> *@
+
+  @* post ve get arasındaki fark gette bulunduğumuz istek üst tarafta urlde görünür ancak postta görünmez. sadıkturan getle gönderilebilir ancak parola içeriği görünmesini istemediğimiz için post metoduyla göndermeliyiz *@

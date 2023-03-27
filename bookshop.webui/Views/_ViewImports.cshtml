@@ -1,0 +1,9 @@
+@* View için tek tek product nesnesini tanıması için sayfaya eklemek yerine productın tanınması için product 
+hangi modelin içindeyse o modelin namespace adını viewimporta ekledik. böylece her defasında tekrar tekrar yazmamıza gerek kalmadı *@
+@using bookshop.entity
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using bookshop.webui.Models
+@using Newtonsoft.Json
+@using bookshop.webui.Extensions
+@using Microsoft.AspNetCore.Identity
+@using bookshop.webui.Identity

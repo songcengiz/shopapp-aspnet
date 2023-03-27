@@ -1,0 +1,192 @@
+@model ProductModel
+
+<h1 class="h3">Edit Book</h1>
+<hr>
+<form asp-controller="Admin" asp-action="ProductEdit" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <input type="hidden" name="ProductId" value="@Model.ProductId">
+            <div class="form-group row">
+                <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Url" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Url">
+                    <span asp-validation-for="Url" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <textarea id="editor" class="form-control" asp-for="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Price" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Price">
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ImageUrl" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input type="hidden" asp-for="ImageUrl">
+                    <img src="~/coverpage/@Model.ImageUrl" width="80">
+                    <input type="file" name="file">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ISBN" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="ISBN">
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="NumberOfPage" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="NumberOfPage">
+                    <span asp-validation-for="NumberOfPage" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Language" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Language">
+                    <span asp-validation-for="Language" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="PaperType" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="PaperType">
+                    <span asp-validation-for="PaperType" class="text-danger"></span>
+                </div>
+            </div>
+                <div class="form-group row">
+                <label asp-for="DateAdded" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                       <input class="form-control" asp-for="DateAdded">
+                    <span asp-validation-for="DateAdded" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+
+                <div class="col-sm-10 offset-sm-2 my-4">
+                    <button type="submit" class="btn btn-primary">Save Book</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            @for (int i = 0; i < Model.SelectedCategories.Count; i++)
+            {
+                <input type="hidden" name="SelectedCategories[@i].CategoryId"
+                value="@Model.SelectedCategories[@i].CategoryId">
+                <input type="hidden" name="SelectedCategories[@i].Name" value="@Model.SelectedCategories[@i].Name">
+            }
+            @foreach (var item in (List<Category>)ViewBag.Categories)
+            {
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="categoryIds" value="@item.CategoryId"
+                    id="category_@(item.CategoryId)"
+                    @(Model.SelectedCategories.Any(i=>i.CategoryId==item.CategoryId)?"checked":"")>
+                    <label class="custom-control-label" for="category_@(item.CategoryId)">@item.Name</label>
+                </div>
+            }
+        
+            <hr>
+            <div class="custom-control custom-checkbox">
+                <input asp-for="IsApproved" type="checkbox" class="custom-control-input">
+                <label asp-for="IsApproved" class="custom-control-label"></label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input asp-for="IsHome" type="checkbox" class="custom-control-input">
+                <label asp-for="IsHome" class="custom-control-label"></label>
+            </div>
+
+            <hr>
+             @for (int i = 0; i < Model.SelectedAuthors.Count; i++)
+            {
+                <input type="hidden" name="SelectedAuthors[@i].AuthorId"
+                value="@Model.SelectedAuthors[@i].AuthorId">
+                <input type="hidden" name="SelectedAuthors[@i].Name" value="@Model.SelectedAuthors[@i].Name">
+            }
+            @foreach (var item in (List<Author>)ViewBag.Authors)
+            {
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="authorIds" value="@item.AuthorId"
+                    id="author_@(item.AuthorId)"
+                    @(Model.SelectedAuthors.Any(i=>i.AuthorId==item.AuthorId)?"checked":"")>
+                    <label class="custom-control-label" for="author_@(item.AuthorId)">@item.Name</label>
+                </div>
+            }
+            <hr>
+             @for (int i = 0; i < Model.SelectedPublishers.Count; i++)
+            {
+                <input type="hidden" name="SelectedPublishers[@i].PublisherId"
+                value="@Model.SelectedPublishers[@i].PublisherId">
+                <input type="hidden" name="SelectedPublishers[@i].Name" value="@Model.SelectedPublishers[@i].Name">
+            }
+            @foreach (var item in (List<Publisher>)ViewBag.Publishers)
+            {
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="publisherIds" value="@item.PublisherId"
+                    id="publisher_@(item.PublisherId)"
+                    @(Model.SelectedPublishers.Any(i=>i.PublisherId==item.PublisherId)?"checked":"")>
+                    <label class="custom-control-label" for="publisher_@(item.PublisherId)">@item.Name</label>
+                </div>
+            }
+            <hr>
+                 @for (int i = 0; i < Model.SelectedTranslators.Count; i++)
+            {
+                <input type="hidden" name="SelectedTranslators[@i].TranslatorId"
+                value="@Model.SelectedTranslators[@i].TranslatorId">
+                <input type="hidden" name="SelectedTranslators[@i].Name" value="@Model.SelectedTranslators[@i].Name">
+            }
+            @foreach (var item in (List<Translator>)ViewBag.Translators)
+            {
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="translatorIds" value="@item.TranslatorId"
+                    id="translator_@(item.TranslatorId)"
+                    @(Model.SelectedTranslators.Any(i=>i.TranslatorId==item.TranslatorId)?"checked":"")>
+                    <label class="custom-control-label" for="translator_@(item.TranslatorId)">@item.Name</label>
+                </div>
+            }
+
+           
+
+
+
+
+
+
+
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+<script src="/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+<script src="/modules/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor');
+</script>
+}

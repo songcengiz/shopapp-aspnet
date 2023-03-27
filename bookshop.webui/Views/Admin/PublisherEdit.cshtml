@@ -1,0 +1,125 @@
+@model PublisherModel
+
+<h1 class="h3">Edit Publisher</h1>
+<hr>
+<form asp-controller="Admin" asp-action="PublisherEdit" method="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-12">
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+
+            <input type="hidden" name="PublisherId" value="@Model.PublisherId">
+            <div class="form-group row">
+                <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Url" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Url">
+                    <span asp-validation-for="Url" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Description" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <textarea id="editor" class="form-control" asp-for="Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Address" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Address">
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ImageLogo" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input type="hidden" asp-for="ImageLogo">
+                    <img src="~/logo/@Model.ImageLogo" width="80">
+                    <input type="file" name="file">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Appellation" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Appellation">
+                    <span asp-validation-for="Appellation" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Phone" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Phone">
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Email" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="Website " class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <input class="form-control" asp-for="Website ">
+                    <span asp-validation-for="Website " class="text-danger"></span>
+                </div>
+            </div>
+             
+
+            <div class="form-group row">
+
+                <div class="col-sm-10 offset-sm-2 my-4">
+                    <button type="submit" class="btn btn-primary">Save Publisher</button>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-md-4">
+            @for (int i = 0; i < Model.SelectedProducts.Count; i++)
+            {
+                <input type="hidden" name="SelectedProducts[@i].ProductId"
+                value="@Model.SelectedProducts[@i].ProductId">
+                <input type="hidden" name="SelectedProducts[@i].Name" value="@Model.SelectedProducts[@i].Name">
+            }
+            @foreach (var item in (List<Product>)ViewBag.Products)
+            {
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" name="productIds" value="@item.ProductId"
+                    id="product_@(item.ProductId)"
+                    @(Model.SelectedProducts.Any(i=>i.ProductId==item.ProductId)?"checked":"")>
+                    <label class="custom-control-label" for="product_@(item.ProductId)">@item.Name</label>
+                </div>
+            }
+           
+
+
+
+
+
+
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+<script src="/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+<script src="/modules/ckeditor/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('editor');
+</script>
+}

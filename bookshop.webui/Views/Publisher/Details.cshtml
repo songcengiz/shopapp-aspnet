@@ -1,0 +1,71 @@
+@model PublisherDetailModel
+
+
+
+<div class="row ">
+
+
+
+
+    <div class="col-md-6">
+
+
+        <h1 class="mb-3">@Model.Publisher.Name <span> <img src="~/logo/@Model.Publisher.ImageLogo" class="img-fluid"
+                    alt=""></span></h1>
+
+        <hr>
+        <div class="attributes">
+            <table style="width: 100%;">
+
+                <tr>
+                    <td>Appellation:</td>
+                    <td>@Model.Publisher.Appellation</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>@Model.Publisher.Email</td>
+                </tr>
+                <tr>
+                    <td>Phone:</td>
+                    <td>@Model.Publisher.Phone</td>
+                </tr>
+
+                <tr>
+                    <td>Website:</td>
+                    <td>@Model.Publisher.Website</td>
+                </tr>
+
+                <tr>
+                    <td>Address:</td>
+                    <td>@Model.Publisher.Address</td>
+                </tr>
+
+
+
+
+            </table>
+        </div>
+        <div class="row">
+
+            <div class="col-md-6 p-3 mt-5 " style="  text-align: justify">
+                @Html.Raw(Model.Publisher.Description)
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="col-md-6">
+        <div class="row">
+
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-md-4 mt-3">
+                    @await Html.PartialAsync("_product",product)
+
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

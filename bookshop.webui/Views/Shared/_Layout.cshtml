@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <link rel="stylesheet" href="/modules/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+    @RenderSection("Css",false)
+    <link rel="stylesheet" href="~/css/style.css">
+    <title>BookApp</title>
+</head>
+
+<body>
+
+    @await Html.PartialAsync("_navbar")
+    <main class="my-3">
+        <div class="container-fluid">
+            @if (@TempData["message"] != null)
+            {
+                <partial name="_ResultMessage" model="@(TempData.Get<AlertMessage>("message"))" />
+
+            }
+            @RenderBody()
+        </div>
+
+    </main>
+
+    <footer class="py-5 bg-dark text-white text-center">
+     
+        
+            
+            <a href="#" style=" font-size: 30px; margin:auto; color:white;"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" style=" font-size: 30px; margin-left:5px; color:white;"><i class="fa-brands fa-twitter"></i></a>
+            <a href="https://www.linkedin.com/" style=" font-size: 30px; margin-left:5px; color:white;"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#" style=" font-size: 30px; margin-left:5px; color:white;"><i class="fa-brands fa-facebook"></i></a>
+         
+     
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+
+        </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    @RenderSection("Scripts",false)
+
+</body>
+
+</html>
